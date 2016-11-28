@@ -18,7 +18,7 @@ public class MyApplication extends Application {
       // Set a threshold for uploads
       .uploadWarningThreshold(Threshold.of(10, SizeUnit.MEGABYTES).per(TimeUnit.HOUR))
       // Register callbacks to be alerted when the threshold is reached
-      .alert(new LogDataUsageAlertAdapter(), new DataUsageAlertAdapter() {
+      .alert(new LogDataUsageAlertListener(), new DataUsageAlertListener() {
           @Override
           public void alertThreshold(Threshold threshold, DataUsage dataUsage) {
               // Alert somehow!
@@ -37,7 +37,7 @@ If you want more control of when you measure you can create the `TrafficCop` ins
 TrafficCop trafficCop = new TrafficCop.Builder()
   .downloadWarningThreshold(Threshold.of(1, SizeUnit.GIGABYTE).per(1, TimeUnit.WEEK))
   .uploadWarningThreshold(Threshold.of(10, SizeUnit.MEGABYTES).per(TimeUnit.HOUR))
-  .alert(new LogDataUsageAlertAdapter(), new DataUsageAlertAdapter() {
+  .alert(new LogDataUsageAlertListener(), new DataUsageAlertListener() {
       @Override
       public void alertThreshold(Threshold threshold, DataUsage dataUsage) {
           // Alert somehow!
